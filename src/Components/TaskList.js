@@ -10,8 +10,8 @@ import './TaskList.css';
 const TaskList = () => {
   const [showTaskForm, setShowTaskForm] = useState(false);
   const [tasks, setTasks] = useState([
-    { id: 1, teamMember: 'Alice Mayer', name: 'Task 1', dueDate: '24/03/2024', priority: 'High' },
-    { id: 2, teamMember: 'Kate Moss', name: 'Task 2', dueDate: '20/03/2024', priority: 'Medium' },
+    { id: 1, teamMember: 'Alice Mayer', name: 'Task 1', dueDate: '2024-03-16', priority: 'High' },
+    { id: 2, teamMember: 'Kate Moss', name: 'Task 2', dueDate: '2024-03-20', priority: 'Medium' },
   ]);
 
   const handleAddTask = (newTask) => {
@@ -23,6 +23,8 @@ const TaskList = () => {
     const updatedTasks = tasks.filter((task) => task.id !== taskId);
     setTasks(updatedTasks);
   };
+
+  const sortedTasks = tasks.slice().sort((a,b) => new Date(a.dueDate) - new Date(b.dueDate));
 
   return (
     <div>
@@ -39,7 +41,7 @@ const TaskList = () => {
           <p className="task-info">Priority</p>
           <p className="task-info">Actions</p>
         </div>
-        {tasks.map((task) => (
+        {sortedTasks.map((task) => (
           <Task
             key={task.id}
             teamMember={task.teamMember}
@@ -49,6 +51,16 @@ const TaskList = () => {
             onDelete={() => handleDeleteTask(task.id)}
           />
         ))}
+        {/* {tasks.map((task) => (
+          <Task
+            key={task.id}
+            teamMember={task.teamMember}
+            name={task.name}
+            dueDate={task.dueDate}
+            priority={task.priority}
+            onDelete={() => handleDeleteTask(task.id)}
+          />
+        ))} */}
       </div>
       {showTaskForm && <TaskForm onAddTask={handleAddTask} onCancel={() => setShowTaskForm(false)} />}
     </div>
