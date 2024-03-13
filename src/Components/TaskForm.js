@@ -12,6 +12,11 @@ const TaskForm = ({ onAddTask, onCancel }) => {
   const [errors, setErrors] = useState({});
 
   const handleAddTask = () => {
+
+    if(!taskName || !dueDate || !priority){
+      alert('Please fill out all the fields');
+      return;
+    }
     const validationErrors = {};
 
     // Validate taskName
@@ -29,7 +34,7 @@ const TaskForm = ({ onAddTask, onCancel }) => {
       setErrors(validationErrors);
     } else {
       const newTask = {
-        id: Math.random(), // You should use a better way to generate IDs
+        id: Math.random(), 
         teamMember,
         name: taskName,
         dueDate,
@@ -67,10 +72,22 @@ const TaskForm = ({ onAddTask, onCancel }) => {
           <input type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} />
           {errors.dueDate && <p className="error-message">{errors.dueDate}</p>}
         </label>
+
         <label>
           Priority:
-          <input type="text" value={priority} onChange={(e) => setPriority(e.target.value)} />
+          {/* <input type="text" value={priority} onChange={(e) => setPriority(e.target.value)} /> */}
         </label>
+        <select 
+        id="priority"
+        value={priority}
+        onChange={(e) => setPriority(e.target.value)}
+        >
+          <option value="high">High</option>
+          <option value="medium">Medium</option>
+          <option value="low">Low</option>
+        </select>
+        
+
         <div className="form-buttons">
           <button onClick={handleAddTask}>Add Task</button>
           <button onClick={onCancel}>Cancel</button>

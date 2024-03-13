@@ -36,6 +36,11 @@
     box-sizing: border-box;
     margin-top: 4px;
   }
+
+  .task-form select{
+    height:30px;
+    width:30%;
+  }
   
   .form-buttons {
     margin-top: 16px;
@@ -61,3 +66,4 @@
     font-size: 12px;
     margin-top: 4px;
   }
+  
