@@ -3,26 +3,46 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './TaskForm.css';
+import { useEffect } from 'react';
 
-const TaskForm = ({ onAddTask, onCancel }) => {
-  const [teamMember, setTeamMember] = useState('');
-  const [taskName, setTaskName] = useState('');
-  const [dueDate, setDueDate] = useState('');
-  const [priority, setPriority] = useState('');
+const TaskForm = ({
+  onAddTask,
+  onUpdateTask,
+  onCancel,
+  updateInProcess,
+  currentTaskToUpdate,
+  setUpdateInProcess
+}) => {
+  const [teamMember, setTeamMember] = useState("");
+  const [taskName, setTaskName] = useState("");
+  const [dueDate, setDueDate] = useState("");
+  const [priority, setPriority] = useState("");
   const [errors, setErrors] = useState({});
+
+  useEffect(() => {
+    // Update state only when updateInProcess changes
+    if (updateInProcess && currentTaskToUpdate) {
+      console.log(currentTaskToUpdate);
+      setTeamMember(currentTaskToUpdate.teamMember);
+      setTaskName(currentTaskToUpdate.name);
+      setDueDate(currentTaskToUpdate.dueDate);
+      setPriority(currentTaskToUpdate.priority);
+    }
+  }, [updateInProcess, currentTaskToUpdate]);
 
   const handleAddTask = () => {
     const validationErrors = {};
 
     // Validate taskName
     if (taskName.length < 5) {
-      validationErrors.taskName = 'Task name must be at least 5 characters long';
+      validationErrors.taskName =
+        "Task name must be at least 5 characters long";
     }
 
     // Validate dueDate
-    const currentDate = new Date().toISOString().split('T')[0];
+    const currentDate = new Date().toISOString().split("T")[0];
     if (dueDate < currentDate) {
-      validationErrors.dueDate = 'Due date cannot be in the past';
+      validationErrors.dueDate = "Due date cannot be in the past";
     }
 
     if (Object.keys(validationErrors).length > 0) {
@@ -42,11 +62,24 @@ const TaskForm = ({ onAddTask, onCancel }) => {
   };
 
   const resetForm = () => {
-    setTeamMember('');
-    setTaskName('');
-    setDueDate('');
-    setPriority('');
+    setTeamMember("");
+    setTaskName("");
+    setDueDate("");
+    setPriority("");
     setErrors({});
+  };
+
+  const handleUpdateTask = () => {
+    const obj = {
+      id: currentTaskToUpdate.id,
+      teamMember,
+      name: taskName,
+      dueDate,
+      priority,
+    };
+    // console.log(t);
+
+    onUpdateTask(obj);
   };
 
   return (
@@ -55,25 +88,49 @@ const TaskForm = ({ onAddTask, onCancel }) => {
         <h3>Add New Task</h3>
         <label>
           Team Member:
-          <input type="text" value={teamMember} onChange={(e) => setTeamMember(e.target.value)} />
+          <input
+            type="text"
+            value={teamMember}
+            onChange={(e) => setTeamMember(e.target.value)}
+          />
         </label>
         <label>
           Task Name:
-          <input type="text" value={taskName} onChange={(e) => setTaskName(e.target.value)} />
-          {errors.taskName && <p className="error-message">{errors.taskName}</p>}
+          <input
+            type="text"
+            value={taskName}
+            onChange={(e) => setTaskName(e.target.value)}
+          />
+          {errors.taskName && (
+            <p className="error-message">{errors.taskName}</p>
+          )}
         </label>
         <label>
           Due Date:
-          <input type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} />
+          <input
+            type="date"
+            value={dueDate}
+            onChange={(e) => setDueDate(e.target.value)}
+          />
           {errors.dueDate && <p className="error-message">{errors.dueDate}</p>}
         </label>
         <label>
           Priority:
-          <input type="text" value={priority} onChange={(e) => setPriority(e.target.value)} />
+          <input
+            type="text"
+            value={priority}
+            onChange={(e) => setPriority(e.target.value)}
+          />
         </label>
         <div className="form-buttons">
-          <button onClick={handleAddTask}>Add Task</button>
-          <button onClick={onCancel}>Cancel</button>
+          {updateInProcess ? (
+            <button onClick={handleUpdateTask}>Update Task</button>
+          ) : (
+            <button onClick={handleAddTask}>Add Task </button>
+          )}
+          <button onClick={(onCancel)}>
+            Cancel
+          </button>
         </div>
       </div>
     </div>
