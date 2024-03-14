@@ -9,3 +9,21 @@
     font-size: 24px;
     margin-bottom: 16px;
   }
+
+  .add-task-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 60px; /* Adjust top margin based on your preference */
+    right: 200px; /* Adjust right margin based on your preference */
+  }
+
+  .add-task-icon {
+    margin-right: 8px;
+  }

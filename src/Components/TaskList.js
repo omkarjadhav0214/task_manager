@@ -2,6 +2,8 @@
 
 import React, { useState } from 'react';
 import Task from './Task';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import TaskForm from './TaskForm'; 
 import './TaskList.css';
 
@@ -40,6 +42,10 @@ const TaskList = ({ setActiveTab , setTaskDetailId , tasks , setTasks}) => {
   return (
     <div>
       <h2 className="task-list-title">Task List</h2>
+      <button className="add-task-button" onClick={() => setShowTaskForm(true)}>
+        <FontAwesomeIcon icon={faPlus} className="add-task-icon" />
+        Add New Task
+      </button>
       <div className="task-list">
         <div className="task task-header">
           <p className="task-info">Team Member</p>
