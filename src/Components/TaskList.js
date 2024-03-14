@@ -7,12 +7,12 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import TaskForm from './TaskForm'; 
 import './TaskList.css';
 
-const TaskList = () => {
+const TaskList = ({ setActiveTab , setTaskDetailId , tasks , setTasks}) => {
   const [showTaskForm, setShowTaskForm] = useState(false);
-  const [tasks, setTasks] = useState([
-    { id: 1, teamMember: 'Alice Mayer', name: 'Task 1', dueDate: '2024-03-16', priority: 'High' },
-    { id: 2, teamMember: 'Kate Moss', name: 'Task 2', dueDate: '2024-03-20', priority: 'Medium' },
-  ]);
+  // const [tasks, setTasks] = useState([
+  //   { id: 1, teamMember: 'Alice Mayer', name: 'Task 1', dueDate: '2024-03-16', priority: 'High' },
+  //   { id: 2, teamMember: 'Kate Moss', name: 'Task 2', dueDate: '2024-03-20', priority: 'Medium' },
+  // ]);
 
   const handleAddTask = (newTask) => {
     setTasks([...tasks, newTask]);
@@ -51,18 +51,16 @@ const TaskList = () => {
             onDelete={() => handleDeleteTask(task.id)}
           />
         ))}
-        {/* {tasks.map((task) => (
-          <Task
-            key={task.id}
-            teamMember={task.teamMember}
-            name={task.name}
-            dueDate={task.dueDate}
-            priority={task.priority}
-            onDelete={() => handleDeleteTask(task.id)}
-          />
-        ))} */}
       </div>
-      {showTaskForm && <TaskForm onAddTask={handleAddTask} onCancel={() => setShowTaskForm(false)} />}
+      <button className="add-task-button" onClick={() => setShowTaskForm(true)}>
+        Add New Task
+      </button>
+      {showTaskForm && (
+        <TaskForm
+          onAddTask={handleAddTask}
+          onCancel={() => setShowTaskForm(false)}
+        />
+      )}
     </div>
   );
 };
