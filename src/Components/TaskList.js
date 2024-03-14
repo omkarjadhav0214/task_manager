@@ -44,11 +44,14 @@ const TaskList = ({ setActiveTab , setTaskDetailId , tasks , setTasks}) => {
         {sortedTasks.map((task) => (
           <Task
             key={task.id}
+            id={task.id}
             teamMember={task.teamMember}
             name={task.name}
             dueDate={task.dueDate}
             priority={task.priority}
             onDelete={() => handleDeleteTask(task.id)}
+            setActiveTab={setActiveTab}
+            setTaskDetailId={setTaskDetailId}
           />
         ))}
       </div>
