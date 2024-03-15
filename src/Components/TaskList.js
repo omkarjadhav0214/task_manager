@@ -6,22 +6,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import TaskForm from './TaskForm'; 
 import './TaskList.css';
+import {putData,getData, saveData} from '../services';
 
-const TaskList = ({ setActiveTab , setTaskDetailId , tasks , setTasks}) => {
+const TaskList = ({ setActiveTab , setTaskDetailId,tasks, setTasks }) => {
   const [showTaskForm, setShowTaskForm] = useState(false);
-  // const [tasks, setTasks] = useState([
-  //   { id: 1, teamMember: 'Alice Mayer', name: 'Task 1', dueDate: '2024-03-16', priority: 'High' },
-  //   { id: 2, teamMember: 'Kate Moss', name: 'Task 2', dueDate: '2024-03-20', priority: 'Medium' },
-  // ]);
+  
 
   const handleAddTask = (newTask) => {
     setTasks([...tasks, newTask]);
+    putData(newTask);
     setShowTaskForm(false);
   };
 
   const handleDeleteTask = (taskId) => {
     const updatedTasks = tasks.filter((task) => task.id !== taskId);
     setTasks(updatedTasks);
+    console.log(updatedTasks);
+    saveData(updatedTasks);
   };
 
   const sortedTasks = tasks.slice().sort((a,b) => new Date(a.dueDate) - new Date(b.dueDate));

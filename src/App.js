@@ -7,7 +7,7 @@ import { useState } from 'react';
 // import { createBrowserRouter ,RouterProvider} from "react-router-dom";
 import TaskDetail from './Components/TaskDetail';
 // import { create } from 'mathjs';
-
+import {putData,getData, saveData} from './services';
 
 const App = ()=> {
 
@@ -24,22 +24,7 @@ const App = ()=> {
 
   const [activeTab, setActiveTab] = useState('taskList');
   const [taskDetailId , setTaskDetailId] = useState(0)
-  const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      teamMember: "Alice Mayer",
-      name: "Task 1",
-      dueDate: "2024-03-15",
-      priority: "High",
-    },
-    {
-      id: 2,
-      teamMember: "Kate Moss",
-      name: "Task 2",
-      dueDate: "2024-03-15",
-      priority: "Medium",
-    },
-  ]);
+  const [tasks, setTasks] = useState(getData());
  
  return (
    
