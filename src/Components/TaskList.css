@@ -18,6 +18,7 @@
     border-radius: 4px;
     cursor: pointer;
     display: flex;
+    justify-content: center;
     align-items: center;
     position: absolute;
     top: 60px; /* Adjust top margin based on your preference */
@@ -25,5 +26,6 @@
   }
 
   .add-task-icon {
-    margin-right: 8px;
+    margin-right: 20px;
+    
   }

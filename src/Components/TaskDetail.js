@@ -1,14 +1,20 @@
 import React, { useEffect, useState } from "react";
 // import { Button, Form } from "react-bootstrap";
 import TaskForm from "./TaskForm"; 
+import { useParams } from "react-router-dom";
 
-const TaskDetail = ({ setActiveTab, setTaskDetailId, tasks , taskDetailId , setTasks}) =>{
-  
-  const [showTaskForm , setShowTaskForm] = useState(false)
-  const [updateInProcess , setUpdateInProcess] = useState(false)
+const TaskDetail = ({ tasks, setTasks, showTaskForm, setShowTaskForm }) => {
+  let { id: taskDetailId } = useParams();
+  taskDetailId = parseInt(taskDetailId);
+  console.log(taskDetailId);
+
+  // const [showTaskForm, setShowTaskForm] = useState(false);
+  const [updateInProcess, setUpdateInProcess] = useState(false);
 
   useEffect(() => {
     const foundTask = findTaskById(taskDetailId);
+    // console.log("details Clicked");
+    console.log(foundTask);
   }, [taskDetailId, tasks]);
 
   const findTaskById = (taskDetailId) => {
@@ -17,31 +23,30 @@ const TaskDetail = ({ setActiveTab, setTaskDetailId, tasks , taskDetailId , setT
 
   const foundTask = findTaskById(taskDetailId);
 
-   const handleUpdateTask = (updatedObj) => {
-     console.log(updatedObj);
-     console.log("Task getting Updated");
-     //find the id in the tasks and
+  const handleUpdateTask = (updatedObj) => {
+    // console.log(updatedObj);
+    // console.log("Task getting Updated");
+    //find the id in the tasks and
     //  const taskGettingUpdated = tasks.find((t) => t.id === taskDetailId);
     //  console.log(taskGettingUpdated);
-     const updatedTaskList = tasks.map((t)=>{
-      if(t.id === taskDetailId){
-        return {...t , ...updatedObj}
+    const updatedTaskList = tasks.map((t) => {
+      if (t.id === taskDetailId) {
+        return { ...t, ...updatedObj };
+      } else {
+        return t;
       }
-      else{
-        return t
-      }
-     })
+    });
     //  console.log(updatedTaskList);
-     setTasks(updatedTaskList)
-     
-   };
+    setTasks(updatedTaskList);
+    setUpdateInProcess(false)
+   
+  };
 
   return (
     <div>
       <button
         onClick={() => {
-          setActiveTab("taskList");
-          setTaskDetailId(0);
+          window.history.back();
         }}
       >
         Show All Tasks
@@ -72,10 +77,12 @@ const TaskDetail = ({ setActiveTab, setTaskDetailId, tasks , taskDetailId , setT
           updateInProcess={updateInProcess}
           setUpdateInProcess={setUpdateInProcess}
           currentTaskToUpdate={foundTask}
+           showTaskForm={showTaskForm} 
+           setShowTaskForm = {setShowTaskForm} 
         />
       )}
     </div>
-  ); 
-}
+  );
+};
 
 export default TaskDetail;

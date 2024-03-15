@@ -11,7 +11,8 @@ const TaskForm = ({
   onCancel,
   updateInProcess,
   currentTaskToUpdate,
-  setUpdateInProcess
+  showTaskForm,
+  setShowTaskForm,
 }) => {
   const [teamMember, setTeamMember] = useState("");
   const [taskName, setTaskName] = useState("");
@@ -31,17 +32,16 @@ const TaskForm = ({
   }, [updateInProcess, currentTaskToUpdate]);
 
   const handleAddTask = () => {
-
-    if(!taskName || !dueDate || !priority){
-      alert('Please fill out all the fields');
+    if (!taskName || !dueDate) {
+      alert("Please fill out all the fields");
       return;
     }
     const validationErrors = {};
 
     // Validate taskName
-    if (taskName.length < 5) {
+    if (taskName.length < 3) {
       validationErrors.taskName =
-        "Task name must be at least 5 characters long";
+        "Task name must be at least 3 characters long";
     }
 
     // Validate dueDate
@@ -54,7 +54,7 @@ const TaskForm = ({
       setErrors(validationErrors);
     } else {
       const newTask = {
-        id: Math.random(), 
+        id: Date.now(),
         teamMember,
         name: taskName,
         dueDate,
@@ -82,15 +82,16 @@ const TaskForm = ({
       dueDate,
       priority,
     };
-    // console.log(t);
+    // console.log(showTaskForm);
 
     onUpdateTask(obj);
+   
   };
 
   return (
     <div className="task-form-overlay">
       <div className="task-form">
-        <h3>Add New Task</h3>
+        <h3>{updateInProcess ? "Update Task" : "Add New Task"}</h3>
         <label>
           Team Member:
           <input
@@ -120,30 +121,32 @@ const TaskForm = ({
           {errors.dueDate && <p className="error-message">{errors.dueDate}</p>}
         </label>
 
-        <label>
-          Priority:
-
-        </label>
-        <select 
-        id="priority"
-        value={priority}
-        onChange={(e) => setPriority(e.target.value)}
+        <label>Priority:</label>
+        <select
+          id="priority"
+          value={priority}
+          onChange={(e) => setPriority(e.target.value)}
         >
+          <option value="">No Priority</option>
           <option value="high">High</option>
           <option value="medium">Medium</option>
           <option value="low">Low</option>
         </select>
-        
 
         <div className="form-buttons">
           {updateInProcess ? (
-            <button onClick={handleUpdateTask}>Update Task</button>
+            <button
+              onClick={() => {
+                handleUpdateTask();
+                setShowTaskForm(!showTaskForm);
+              }}
+            >
+              Update Task
+            </button>
           ) : (
             <button onClick={handleAddTask}>Add Task </button>
           )}
-          <button onClick={(onCancel)}>
-            Cancel
-          </button>
+          <button onClick={onCancel}>Cancel</button>
         </div>
       </div>
     </div>
