@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FaCalendarPlus } from "react-icons/fa";
 import TaskForm from './TaskForm'; 
 import './TaskList.css';
+import {putData,getData, saveData} from '../services';
+
 
 const TaskList = ({
   setActiveTab,
@@ -23,12 +25,15 @@ const TaskList = ({
 
   const handleAddTask = (newTask) => {
     setTasks([...tasks, newTask]);
+    putData(newTask);
     setShowTaskForm(false);
   };
 
   const handleDeleteTask = (taskId) => {
     const updatedTasks = tasks.filter((task) => task.id !== taskId);
     setTasks(updatedTasks);
+    console.log(updatedTasks);
+    saveData(updatedTasks);
   };
 
   const sortedTasks = tasks
