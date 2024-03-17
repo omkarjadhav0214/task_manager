@@ -3,14 +3,25 @@
 import React, { useState } from 'react';
 import Task from './Task';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { FaCalendarPlus } from "react-icons/fa";
 import TaskForm from './TaskForm'; 
 import './TaskList.css';
 import {putData,getData, saveData} from '../services';
 
-const TaskList = ({ setActiveTab , setTaskDetailId,tasks, setTasks }) => {
-  const [showTaskForm, setShowTaskForm] = useState(false);
-  
+
+const TaskList = ({
+  setActiveTab,
+  setTaskDetailId,
+  tasks,
+  setTasks,
+  showTaskForm,
+  setShowTaskForm,
+}) => {
+  // const [showTaskForm, setShowTaskForm] = useState(false);
+  // const [tasks, setTasks] = useState([
+  //   { id: 1, teamMember: 'Alice Mayer', name: 'Task 1', dueDate: '2024-03-16', priority: 'High' },
+  //   { id: 2, teamMember: 'Kate Moss', name: 'Task 2', dueDate: '2024-03-20', priority: 'Medium' },
+  // ]);
 
   const handleAddTask = (newTask) => {
     setTasks([...tasks, newTask]);
@@ -25,14 +36,17 @@ const TaskList = ({ setActiveTab , setTaskDetailId,tasks, setTasks }) => {
     saveData(updatedTasks);
   };
 
-  const sortedTasks = tasks.slice().sort((a,b) => new Date(a.dueDate) - new Date(b.dueDate));
+  const sortedTasks = tasks
+    .slice()
+    .sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
 
   return (
     <div>
       <h2 className="task-list-title">Task List</h2>
       <button className="add-task-button" onClick={() => setShowTaskForm(true)}>
-        <FontAwesomeIcon icon={faPlus} className="add-task-icon" />
-        Add New Task
+        {/* <FontAwesomeIcon icon={faPlus} className="add-task-icon" /> */}
+        <FaCalendarPlus className="add-task-icon" />
+          Add New Task
       </button>
       <div className="task-list">
         <div className="task task-header">
@@ -51,8 +65,8 @@ const TaskList = ({ setActiveTab , setTaskDetailId,tasks, setTasks }) => {
             dueDate={task.dueDate}
             priority={task.priority}
             onDelete={() => handleDeleteTask(task.id)}
-            setActiveTab={setActiveTab}
-            setTaskDetailId={setTaskDetailId}
+            showTaskForm={showTaskForm}
+            setShowTaskForm={setShowTaskForm}
           />
         ))}
       </div>
