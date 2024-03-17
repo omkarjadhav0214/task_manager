@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 // import { Button, Form } from "react-bootstrap";
 import TaskForm from "./TaskForm"; 
 import { useParams } from "react-router-dom";
+import './TaskDetail.css'
 
 const TaskDetail = ({ tasks, setTasks, showTaskForm, setShowTaskForm }) => {
   let { id: taskDetailId } = useParams();
@@ -44,7 +45,7 @@ const TaskDetail = ({ tasks, setTasks, showTaskForm, setShowTaskForm }) => {
 
   return (
     <div>
-      <button
+      {/* <button
         onClick={() => {
           window.history.back();
         }}
@@ -69,7 +70,51 @@ const TaskDetail = ({ tasks, setTasks, showTaskForm, setShowTaskForm }) => {
             Update
           </button>
         </div>
-      )}
+      )} */}
+
+      <div className="task-details-container">
+        <button
+          className="back-button"
+          onClick={() => {
+            window.history.back();
+          }}
+        >
+          Back to Tasks
+        </button>
+
+        {foundTask && (
+          <div>
+            <p className="task-details-heading">Task Details</p>
+            <div className="task-detail-item">
+              <span className="task-detail-label">Team Member:</span>{" "}
+              {foundTask.teamMember}
+            </div>
+            <div className="task-detail-item">
+              <span className="task-detail-label">Name:</span> {foundTask.name}
+            </div>
+            <div className="task-detail-item">
+              <span className="task-detail-label">Due Date:</span>{" "}
+              {foundTask.dueDate}
+            </div>
+            <div className="task-detail-item">
+              <span className="task-detail-label">Priority:</span>{" "}
+              {foundTask.priority}
+            </div>
+
+            <button
+              className="update-button"
+              onClick={() => {
+                console.log("Update Started");
+                setShowTaskForm(true);
+                setUpdateInProcess(true);
+              }}
+            >
+              Update
+            </button>
+          </div>
+        )}
+      </div>
+
       {showTaskForm && (
         <TaskForm
           onUpdateTask={handleUpdateTask}
@@ -77,8 +122,8 @@ const TaskDetail = ({ tasks, setTasks, showTaskForm, setShowTaskForm }) => {
           updateInProcess={updateInProcess}
           setUpdateInProcess={setUpdateInProcess}
           currentTaskToUpdate={foundTask}
-           showTaskForm={showTaskForm} 
-           setShowTaskForm = {setShowTaskForm} 
+          showTaskForm={showTaskForm}
+          setShowTaskForm={setShowTaskForm}
         />
       )}
     </div>

@@ -1,0 +1,56 @@
+.task-details-container {
+  background-color: #f8f9fa; /* Light gray background */
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+  padding: 20px;
+  max-width: 500px; /* Limit width to prevent stretching on larger screens */
+  margin: 20px auto; /* Center the container horizontally */
+}
+
+.task-details-heading {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.task-detail-item {
+  margin-bottom: 10px;
+}
+
+.task-detail-label {
+  font-weight: bold;
+}
+
+.update-button {
+  background-color: #007bff; /* Blue color */
+  color: #fff; /* White text color */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth transition on hover */
+}
+
+.update-button:hover {
+  background-color: #0056b3; /* Darker blue color on hover */
+}
+
+.task-detail-label {
+  font-weight: bold;
+  font-size: 1.2rem; /* Adjust the font size as needed */
+}
+
+.back-button {
+  background-color: #007bff; /* Blue background color */
+  color: #fff; /* White text color */
+  border: none;
+  padding: 10px 20px; /* Padding around the text */
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer;
+  font-size: 1rem; /* Font size */
+  transition: background-color 0.3s ease; /* Smooth transition on hover */
+}
+
+.back-button:hover {
+  background-color: #0056b3; /* Darker blue background color on hover */
+}
