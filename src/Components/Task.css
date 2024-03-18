@@ -20,6 +20,7 @@
 }
 
 .delete-button {
+  margin-top : 5px;
   background-color: #ff5555;
   color: #fff;
   border: none;
@@ -44,17 +45,26 @@
 
 .task {
   width: 700px;
-  height: 50px; /* Adjust width and height based on your preference */
+  min-height: 50px; 
   margin: 10px;
   padding: 16px;
   border: 1px solid #ddd;
   border-radius: 8px;
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  /* justify-content: space-between; */
+  grid-template-columns: 10% 45% 15% 10% 20%; /* Two equally sized columns */
 }
 
 .task-info {
   margin-bottom: 8px;
+}
+
+.taskLink{
+  margin-right:5px;
+  color: black;
+  font-weight: bolder;
+  text-decoration: none;
+
 }

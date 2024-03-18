@@ -10,6 +10,8 @@ import { faTrashAlt, faCheck, faEdit } from '@fortawesome/free-solid-svg-icons';
 const Task = ({ id, onDelete  , showTaskForm, setShowTaskForm, teamMember , name , dueDate , priority, onComplete, onUpdate }) => {
 
   const getPriorityColor = () => {
+    if(!priority)
+      return '#fff';
     switch(priority.toLowerCase()) {
       case 'high':
         return'red';
@@ -28,7 +30,7 @@ const Task = ({ id, onDelete  , showTaskForm, setShowTaskForm, teamMember , name
       <p className="task-info">{teamMember}</p>
       <p className="task-info">{name}</p>
       <p className="task-info">{dueDate}</p>
-      <p className="task-info" style={{color: getPriorityColor()}}>{priority}</p>
+      <p className="task-info" style={{color: getPriorityColor()}}>{priority.toUpperCase()}</p>
 
 
       <div className='btn'>
@@ -45,8 +47,10 @@ const Task = ({ id, onDelete  , showTaskForm, setShowTaskForm, teamMember , name
       >
         Details */}
       {/* </button> */}
-
-        <Link to={`/tasks/${id}`}>Details</Link>
+      <button className="taskLink delete-button "> <Link to={`/tasks/${id}`}>
+        <i>Go</i>
+        </Link></button>
+       
 
       <button className="delete-button" onClick={onDelete}>
         <FontAwesomeIcon icon={faTrashAlt} />

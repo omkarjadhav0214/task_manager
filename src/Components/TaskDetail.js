@@ -83,22 +83,31 @@ const TaskDetail = ({ tasks, setTasks, showTaskForm, setShowTaskForm }) => {
         </button>
 
         {foundTask && (
-          <div>
+          <div className="task-view">
             <p className="task-details-heading">Task Details</p>
+            <div className="task-row">
             <div className="task-detail-item">
               <span className="task-detail-label">Team Member:</span>{" "}
-              {foundTask.teamMember}
+              <span>{foundTask.teamMember}</span>
             </div>
+            </div>
+            <div className="task-row">
             <div className="task-detail-item">
-              <span className="task-detail-label">Name:</span> {foundTask.name}
+              <span className="task-detail-label">Name:</span> 
+              <span>{foundTask.name}</span>
             </div>
+            </div>
+            <div className="task-row">
             <div className="task-detail-item">
               <span className="task-detail-label">Due Date:</span>{" "}
-              {foundTask.dueDate}
+              <span>{foundTask.dueDate}</span>
             </div>
-            <div className="task-detail-item">
-              <span className="task-detail-label">Priority:</span>{" "}
-              {foundTask.priority}
+            </div>
+            <div className="task-row">
+              <div className="task-detail-item">
+                <span className="task-detail-label">Priority:</span>{" "}
+                <span>{foundTask.priority.toUpperCase()}</span>
+              </div>
             </div>
 
             <button
@@ -111,6 +120,7 @@ const TaskDetail = ({ tasks, setTasks, showTaskForm, setShowTaskForm }) => {
             >
               Update
             </button>
+            
           </div>
         )}
       </div>

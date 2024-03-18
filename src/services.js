@@ -21,7 +21,9 @@ var tasks = []
   export function getData(){
     // returns list of task objects
     tasks = JSON.parse(localStorage.getItem('taskList'));
+    if(tasks)
     return tasks;
+    else return [{teamMember: "You", name: "Add a task"}];
   }
   
   export function updateData(id, editedTask){
