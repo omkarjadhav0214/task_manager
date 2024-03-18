@@ -21,9 +21,11 @@ var tasks = []
   export function getData(){
     // returns list of task objects
     tasks = JSON.parse(localStorage.getItem('taskList'));
-    if(tasks)
+    if(!tasks)
+     {
+      tasks = [{teamMember: "You", name: "Add a task", dueDate: '03-04-2024', priority: 'HIGH'}];
+    }
     return tasks;
-    else return [{teamMember: "You", name: "Add a task"}];
   }
   
   export function updateData(id, editedTask){
