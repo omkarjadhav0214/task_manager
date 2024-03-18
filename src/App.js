@@ -8,7 +8,7 @@ import { useState } from 'react';
 import TaskDetail from './Components/TaskDetail';
 // import { create } from 'mathjs';
 import {putData,getData, saveData} from './services';
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom;
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 
 const App = ()=> {
 
