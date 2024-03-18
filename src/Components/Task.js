@@ -26,35 +26,29 @@ const Task = ({ id, onDelete  , showTaskForm, setShowTaskForm, teamMember , name
   }; 
 
   return (
-    <div className="task" >
-      <p className="task-info">{teamMember}</p>
-      <p className="task-info">{name}</p>
+    <div className="task">
+      <p className="task-info team-member">{teamMember}</p>
+      <p className="task-info name truncate">{name}</p>
       <p className="task-info">{dueDate}</p>
-      <p className="task-info" style={{color: getPriorityColor()}}>{priority.toUpperCase()}</p>
+      <p className="task-info" style={{ color: getPriorityColor() }}>
+        {priority.toUpperCase()}
+      </p>
 
-
-      <div className='btn'>
-      <button className="action-button" onClick={onComplete}>
+      <div className="btn">
+        <button className="action-button" onClick={onComplete}>
           <FontAwesomeIcon icon={faCheck} />
         </button>
-        
-        {/* <button
-        className="details-button"
-        onClick={function() {
-          setActiveTab("taskDetail")
-          setTaskDetailId(id)
-        }}
-      >
-        Details */}
-      {/* </button> */}
-      <button className="taskLink delete-button "> <Link to={`/tasks/${id}`}>
-        <i>Go</i>
-        </Link></button>
-       
 
-      <button className="delete-button" onClick={onDelete}>
-        <FontAwesomeIcon icon={faTrashAlt} />
-      </button>
+        <button className="taskLink delete-button ">
+          {" "}
+          <Link to={`/tasks/${id}`}>
+            <i>Go</i>
+          </Link>
+        </button>
+
+        <button className="delete-button" onClick={onDelete}>
+          <FontAwesomeIcon icon={faTrashAlt} />
+        </button>
       </div>
     </div>
   );

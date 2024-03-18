@@ -55,11 +55,14 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: grid;
   /* justify-content: space-between; */
-  grid-template-columns: 10% 45% 15% 10% 20%; /* Two equally sized columns */
+  grid-template-columns: 10% 35% 25% 10% 20%; /* Adjust column widths */
+  align-items: center; /* Vertically center content */
 }
 
 .task-info {
   margin-bottom: 8px;
+   overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .taskLink{
@@ -68,4 +71,21 @@
   font-weight: bolder;
   text-decoration: none;
 
+}
+
+.name {
+   flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; /* Truncate long text with ellipsis */
+  margin-left: 70px;
+}
+
+.task-info.name {
+  flex: 1;
+}
+
+.task-info.team-member, .task-info.name {
+  white-space: nowrap; /* Prevent text from wrapping */
+  max-width: 150px; /* Adjust maximum width as needed */
 }
