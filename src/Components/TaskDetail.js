@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import TaskForm from "./TaskForm"; 
 import { useParams } from "react-router-dom";
 import './TaskDetail.css'
+import { SlArrowLeft } from "react-icons/sl";
+
 
 const TaskDetail = ({ tasks, setTasks, showTaskForm, setShowTaskForm }) => {
   let { id: taskDetailId } = useParams();
@@ -79,7 +81,7 @@ const TaskDetail = ({ tasks, setTasks, showTaskForm, setShowTaskForm }) => {
             window.history.back();
           }}
         >
-          Back to Tasks
+        <SlArrowLeft  className="left-arrow"/>
         </button>
 
         {foundTask && (

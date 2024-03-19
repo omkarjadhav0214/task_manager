@@ -35,9 +35,9 @@ const Task = ({ id, onDelete  , showTaskForm, setShowTaskForm, teamMember , name
       </p>
 
       <div className="btn">
-        <button className="action-button" onClick={onComplete}>
+        {/* <button className="action-button" onClick={onComplete}>
           <FontAwesomeIcon icon={faCheck} />
-        </button>
+        </button> */}
 
         <button className="taskLink delete-button ">
           {" "}

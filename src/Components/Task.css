@@ -28,6 +28,11 @@
   border-radius: 4px;
   cursor: pointer;
   text-decoration: none;
+  transition: font-size 0.2s ease; 
+}
+
+.delete-button:hover{
+  font-size: medium;
 }
 
 .delete-button i {

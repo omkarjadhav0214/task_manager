@@ -12,7 +12,7 @@
   display:grid;
   grid-template-columns: 90%;
 }
-.task-row{
+.left-arrow{
 
 }
 
@@ -42,11 +42,16 @@
   transition: background-color 0.3s ease; /* Smooth transition on hover */
   margin-left: 20px;
   margin-top: 20px;
+
+  font-weight:bolder;
+  transition: font-size 0.5s ease; 
 }
 
 .update-button:hover {
+  font-size:medium;
   background-color: #0056b3; /* Darker blue color on hover */
   border-radius: 4px;
+
 }
 
 .task-detail-label {
@@ -63,8 +68,15 @@
   cursor: pointer;
   font-size: 1rem; /* Font size */
   transition: background-color 0.3s ease; /* Smooth transition on hover */
+
+  /* transition in buttons -Manan */
+  font-size: 8vh;
+  font-weight:bolder;
+  transition: font-size 0.5s ease; /* Smooth transition on hover */
+
 }
 
 .back-button:hover {
+  font-size: 10vh;
   background-color: #0056b3; /* Darker blue background color on hover */
 }

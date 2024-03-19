@@ -23,7 +23,8 @@ var tasks = []
     tasks = JSON.parse(localStorage.getItem('taskList'));
     if(!tasks)
      {
-      tasks = [{teamMember: "You", name: "Add a task", dueDate: '03-04-2024', priority: 'HIGH'}];
+
+      tasks = [{teamMember: "You", name: "Add a task", dueDate: '2030-12-31', priority: 'HIGH'}];
     }
     return tasks;
   }

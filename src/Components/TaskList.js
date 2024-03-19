@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FaCalendarPlus } from "react-icons/fa";
 import TaskForm from './TaskForm'; 
 import './TaskList.css';
-import {putData,getData, saveData} from '../services';
+import {putData,getData, saveData, updateData, removeData} from '../services';
 
 
 const TaskList = ({
@@ -36,6 +36,19 @@ const TaskList = ({
     saveData(updatedTasks);
   };
 
+  // const handleComplete = (taskID) =>{
+  //   // update as completed -Manan
+  //   var task = tasks.find((t)=> t.id === taskID)
+  //   if(task) {
+  //     task.complete = true;
+  //     removeData(taskID);
+  //     putData(task);
+  //   }
+  //   else
+  //     console.log("task not found on complete");
+  //     setTasks(getData());
+  //     console.log(tasks);
+  // }
   const sortedTasks = tasks
     .slice()
     .sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
@@ -65,6 +78,7 @@ const TaskList = ({
             dueDate={task.dueDate}
             priority={task.priority}
             onDelete={() => handleDeleteTask(task.id)}
+            // onComplete={()=> handleComplete(task.id)}
             showTaskForm={showTaskForm}
             setShowTaskForm={setShowTaskForm}
           />
