@@ -54,7 +54,7 @@ const TaskList = ({
     .sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
 
   return (
-    <div>
+    <div className='taskList-body'>
       <h2 className="task-list-title">Task List</h2>
       <button className="add-task-button" onClick={() => setShowTaskForm(true)}>
         {/* <FontAwesomeIcon icon={faPlus} className="add-task-icon" /> */}
