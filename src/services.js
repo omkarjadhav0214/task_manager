@@ -24,7 +24,8 @@ var tasks = []
     if(!tasks)
      {
 
-      tasks = [{teamMember: "You", name: "Add a task", dueDate: '2030-12-31', priority: 'HIGH'}];
+      //tasks = [{teamMember: "You", name: "Add a task", dueDate: '2030-12-31', priority: 'HIGH'}];
+      tasks = []
     }
     return tasks;
   }

@@ -24,7 +24,7 @@ const Task = ({ id, onDelete  , showTaskForm, setShowTaskForm, teamMember , name
 
     }
   }; 
-
+if(priority)
   return (
     <div className="task">
       <p className="task-info team-member">{teamMember}</p>

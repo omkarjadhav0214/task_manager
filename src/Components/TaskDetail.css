@@ -5,15 +5,13 @@
   padding: 20px;
   max-width: 500px; /* Limit width to prevent stretching on larger screens */
   margin: 20px auto; /* Center the container horizontally */
+  
   display: grid;
   grid-template-columns: 20% 80%;
 }
 .task-view{
   display:grid;
   grid-template-columns: 90%;
-}
-.left-arrow{
-
 }
 
 .task-details-heading {
@@ -24,6 +22,10 @@
 
 .task-detail-item {
   margin-bottom: 10px;
+  /* overflow: hidden; */
+  word-wrap: break-word;
+  white-space: initial;
+  /* text-overflow: ellipsis; */
   display:grid;
   grid-template-columns: 50% 50%;
 }
