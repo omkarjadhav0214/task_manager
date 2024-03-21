@@ -2,7 +2,7 @@
 // Date- 14/03/24
 
 var tasks = []
-
+  
   export function saveData(tasksList){
     // function to put object array, taskList in memory
     localStorage.setItem('taskList', JSON.stringify(tasksList));

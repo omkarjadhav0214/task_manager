@@ -4,6 +4,7 @@ import TaskForm from "./TaskForm";
 import { useParams } from "react-router-dom";
 import './TaskDetail.css'
 import { SlArrowLeft } from "react-icons/sl";
+import { saveData, updateData } from "../services";
 
 
 const TaskDetail = ({ tasks, setTasks, showTaskForm, setShowTaskForm }) => {
@@ -42,7 +43,9 @@ const TaskDetail = ({ tasks, setTasks, showTaskForm, setShowTaskForm }) => {
     //  console.log(updatedTaskList);
     setTasks(updatedTaskList);
     setUpdateInProcess(false)
-   
+
+    saveData(updatedTaskList)
+    
   };
 
   return (
